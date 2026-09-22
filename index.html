@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mengarungi Samudra Langit — Art Exhibition</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #030712;
+    --bg2: #071225;
+    --blue: #4ea8ff;
+    --blue-soft: #8cc8ff;
+    --purple: #8d70ff;
+    --white: #f5f7ff;
+    --muted: #aab4c8;
+    --glass: rgba(9, 18, 39, 0.72);
+    --border: rgba(130, 170, 255, 0.22);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(circle at 20% 10%, rgba(70, 100, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(130, 60, 255, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(0, 130, 255, 0.12), transparent 32%),
+        var(--bg);
+
+    color: var(--white);
+    font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   STAR BACKGROUND
+========================= */
+
+.stars,
+.stars::before,
+.stars::after {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -3;
+    content: "";
+}
+
+.stars {
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(120,180,255,.6) 1px, transparent 1.5px);
+    background-size: 90px 90px, 140px 140px;
+    background-position: 0 0, 30px 50px;
+    opacity: .55;
+    animation: starsMove 80s linear infinite;
+}
+
+.stars::before {
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(160,190,255,.8) 1px, transparent 1.5px);
+    background-size: 180px 180px, 230px 230px;
+    background-position: 80px 40px, 10px 100px;
+    opacity: .35;
+}
+
+.stars::after {
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 0%,
+            rgba(0,0,0,.1) 55%,
+            rgba(0,0,0,.7) 100%
+        );
+}
+
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(150px);
+    }
+}
+
+/* =========================
+   NEBULA
+========================= */
+
+.nebula {
+    position: fixed;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .16;
+    pointer-events: none;
+    z-index: -2;
+}
+
+.nebula.one {
+    background: #164cff;
+    top: -300px;
+    left: -250px;
+}
+
+.nebula.two {
+    background: #7c25ff;
+    bottom: -300px;
+    right: -250px;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+section {
+    min-height: 100vh;
+    padding: 100px 8% 120px;
+    position: relative;
+}
+
+.container {
+    width: min(1150px, 100%);
+    margin: auto;
+}
+
+.section-label {
+    color: var(--blue-soft);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: .72rem;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.7rem, 7vw, 5.5rem);
+    font-weight: 500;
+    line-height: .95;
+    margin-bottom: 25px;
+}
+
+.section-desc {
+    color: var(--muted);
+    max-width: 700px;
+    line-height: 1.8;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.top-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(900px, 90%);
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    background: rgba(2, 7, 20, .68);
+    backdrop-filter: blur(18px);
+    border-radius: 50px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.top-nav a {
+    color: #c8d3e8;
+    text-decoration: none;
+    font-size: .72rem;
+    letter-spacing: 1px;
+    padding: 9px 14px;
+    border-radius: 30px;
+    transition: .3s;
+}
+
+.top-nav a:hover {
+    background: rgba(80,150,255,.13);
+    color: white;
+}
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.music-button {
+    position: fixed;
+    right: 24px;
+    bottom: 25px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 1px solid rgba(140,200,255,.45);
+    background: rgba(5,14,32,.78);
+    backdrop-filter: blur(12px);
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 1rem;
+    box-shadow: 0 0 25px rgba(60,140,255,.18);
+    transition: .3s;
+}
+
+.music-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px rgba(60,140,255,.35);
+}
+
+.audio-hidden {
+    display: none;
+}
+
+/* =========================
+   HERO
+========================= */
+
+#home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    width: min(950px, 100%);
+    margin: auto;
+}
+
+.hero-kicker {
+    color: var(--blue-soft);
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    font-size: .7rem;
+    margin-bottom: 25px;
+}
+
+.hero-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3.5rem, 10vw, 8.5rem);
+    font-weight: 500;
+    line-height: .82;
+    text-shadow: 0 0 50px rgba(80,160,255,.16);
+}
+
+.hero-title span {
+    display: block;
+}
+
+.hero-subtitle {
+    margin: 35px auto;
+    color: #bac6da;
+    line-height: 1.8;
+    max-width: 650px;
+    font-size: .95rem;
+}
+
+.event-pill {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 22px;
+    border: 1px solid var(--border);
+    padding: 13px 22px;
+    border-radius: 50px;
+    background: rgba(10,20,40,.48);
+    color: #dce8ff;
+    font-size: .73rem;
+    letter-spacing: 1px;
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #75839c;
+    font-size: .65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+    display: inline-block;
+    padding: 14px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(120,180,255,.4);
+    background: linear-gradient(
+        135deg,
+        rgba(70,140,255,.18),
+        rgba(120,70,255,.15)
+    );
+    color: white;
+    text-decoration: none;
+    font-size: .75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    border-color: rgba(150,210,255,.75);
+    box-shadow: 0 10px 35px rgba(50,130,255,.15);
+}
+
+/* =========================
+   EXPLORE
+========================= */
+
+.planet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 55px;
+}
+
+.planet-card {
+    position: relative;
+    min-height: 350px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background:
+        radial-gradient(circle at 50% 25%, rgba(80,140,255,.25), transparent 35%),
+        linear-gradient(145deg, rgba(15,30,65,.9), rgba(5,10,25,.94));
+    padding: 28px;
+    transition: .4s;
+}
+
+.planet-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(130,200,255,.55);
+}
+
+.planet {
+    width: 150px;
+    height: 150px;
+    margin: 5px auto 30px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow:
+        inset -25px -20px 45px rgba(0,0,0,.65),
+        0 0 45px rgba(70,150,255,.28);
+}
+
+.planet.blue {
+    background:
+        radial-gradient(circle at 35% 30%, #9cd6ff, #2666b5 42%, #091d50 75%);
+}
+
+.planet.purple {
+    background:
+        radial-gradient(circle at 35% 30%, #d2b5ff, #7045b9 40%, #1c0d47 75%);
+}
+
+.planet.ice {
+    background:
+        radial-gradient(circle at 35% 30%, #e9f8ff, #5ca6c7 40%, #102d43 75%);
+}
+
+.planet-card h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.planet-card p {
+    color: var(--muted);
+    font-size: .78rem;
+    line-height: 1.7;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-grid {
+    margin-top: 55px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.gallery-card {
+    min-height: 280px;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    position: relative;
+    background:
+        linear-gradient(
+            140deg,
+            rgba(45,100,200,.45),
+            rgba(80,30,150,.35)
+        );
+}
+
+.gallery-card:nth-child(2) {
+    background:
+        radial-gradient(
+            circle at 65% 30%,
+            rgba(110,170,255,.65),
+            transparent 28%
+        ),
+        linear-gradient(150deg,#091b46,#170b37);
+}
+
+.gallery-card:nth-child(3) {
+    background:
+        radial-gradient(
+            circle at 30% 40%,
+            rgba(160,100,255,.55),
+            transparent 25%
+        ),
+        linear-gradient(150deg,#0b1439,#090c25);
+}
+
+.gallery-card:nth-child(4) {
+    background:
+        radial-gradient(
+            circle at 65% 60%,
+            rgba(80,190,255,.5),
+            transparent 25%
+        ),
+        linear-gradient(150deg,#051b35,#110c2e);
+}
+
+.gallery-card:nth-child(5) {
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,.22),
+            transparent 10%
+        ),
+        linear-gradient(150deg,#12163d,#050819);
+}
+
+.gallery-card:nth-child(6) {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(120,90,255,.55),
+            transparent 30%
+        ),
+        linear-gradient(150deg,#0a1230,#1b0c32);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 24px;
+    background: linear-gradient(transparent, rgba(0,0,0,.8));
+}
+
+.gallery-overlay h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.7rem;
+}
+
+.gallery-overlay p {
+    color: #aebbd0;
+    font-size: .7rem;
+    margin-top: 5px;
+}
+
+/* =========================
+   EVENT
+========================= */
+
+.event-box {
+    margin-top: 55px;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    padding: 45px;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.event-item {
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(255,255,255,.06);
+}
+
+.event-item span {
+    display: block;
+    color: var(--blue-soft);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: .62rem;
+    margin-bottom: 10px;
+}
+
+.event-item strong {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* =========================
+   RSVP
+========================= */
+
+.rsvp-section {
+    display: flex;
+    align-items: center;
+}
+
+.rsvp-card {
+    width: min(800px, 100%);
+    margin: 50px auto 0;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    padding: 40px;
+    background: rgba(8,17,38,.72);
+    backdrop-filter: blur(20px);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #cbd7ea;
+    font-size: .72rem;
+    letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid rgba(130,170,255,.2);
+    border-radius: 14px;
+    background: rgba(0,0,0,.25);
+    color: white;
+    padding: 14px 16px;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgba(120,190,255,.65);
+}
+
+.form-group select option {
+    background: #071225;
+    color: white;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.rsvp-status {
+    margin-top: 20px;
+    font-size: .75rem;
+    line-height: 1.6;
+    min-height: 20px;
+}
+
+.rsvp-status.success {
+    color: #8dffbd;
+}
+
+.rsvp-status.error {
+    color: #ff9c9c;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.final-content {
+    width: min(850px, 100%);
+    margin: auto;
+}
+
+.final-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: .85;
+    font-weight: 500;
+}
+
+.final-title span {
+    color: var(--blue-soft);
+}
+
+.final-content p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin: 30px auto;
+    max-width: 600px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid rgba(120,160,220,.12);
+    padding: 35px 8%;
+    text-align: center;
+    color: #68748a;
+    font-size: .65rem;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   STAR BURST
+========================= */
+
+.star-burst {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2000;
+    animation: burst 1s ease-out forwards;
+}
+
+@keyframes burst {
+    from {
+        transform: translate(0,0) scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(.1);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+    .top-nav {
+        width: 94%;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .top-nav a {
+        white-space: nowrap;
+    }
+
+    .planet-grid,
+    .gallery-grid,
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-box,
+    .rsvp-card {
+        padding: 28px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .section-title {
+        font-size: 3.2rem;
+    }
+
+    .event-pill {
+        border-radius: 20px;
+        padding: 15px;
+    }
+
+    .music-button {
+        width: 48px;
+        height: 48px;
+        right: 16px;
+        bottom: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="nebula one"></div>
+<div class="nebula two"></div>
+
+<!-- =========================
+     AUDIO
+========================= -->
+
+<audio id="bgMusic" class="audio-hidden" preload="auto">
+    <source src="up-and-up.mp3" type="audio/mpeg">
+</audio>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="top-nav">
+
+    <a href="#home">Beranda</a>
+    <a href="#explore">Jelajahi</a>
+    <a href="#gallery">Karya</a>
+    <a href="#event">Acara</a>
+    <a href="#rsvp">Konfirmasi</a>
+
+</nav>
+
+<!-- =========================
+     MUSIC BUTTON
+========================= -->
+
+<button
+    class="music-button"
+    id="musicButton"
+    aria-label="Putar musik"
+>
+    ♫
+</button>
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-kicker">
+            Art Exhibition • 2026
+        </div>
+
+        <h1 class="hero-title">
+            <span>Mengarungi</span>
+            <span>Samudra Langit</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Menemukan iman di keajaiban di balik hamparan semesta.
+            Sebuah perjalanan visual untuk memandang langit,
+            mengenal kebesaran-Nya, dan menemukan makna
+            di antara luasnya ciptaan.
+        </p>
+
+        <div class="event-pill">
+            <span>25 OCTOBER 2026</span>
+            <span>•</span>
+            <span>08.00 — 12.00 WIB</span>
+            <span>•</span>
+            <span>AULA MUBAROK</span>
+        </div>
+
+        <br><br>
+
+        <a href="#explore" class="btn">
+            ENTER THE EXHIBITION
+        </a>
+
+    </div>
+
+    <div class="hero-scroll">
+        Scroll to explore
+    </div>
+
+</section>
+
+<!-- =========================
+     EXPLORE
+========================= -->
+
+<section id="explore">
+
+    <div class="container">
+
+        <div class="section-label">
+            Chapter I
+        </div>
+
+        <h2 class="section-title">
+            Jelajahi Semesta
+        </h2>
+
+        <p class="section-desc">
+            Setiap benda langit membawa cerita.
+            Setiap cahaya menyimpan perjalanan.
+            Mari mengarungi ruang yang luas dan menemukan
+            keindahan di baliknya.
+        </p>
+
+        <div class="planet-grid">
+
+            <article class="planet-card">
+
+                <div class="planet blue"></div>
+
+                <h3>Blue Horizon</h3>
+
+                <p>
+                    Lautan warna biru yang mengingatkan kita
+                    bahwa kehidupan selalu memiliki cakrawala
+                    yang lebih luas untuk dijelajahi.
+                </p>
+
+            </article>
+
+            <article class="planet-card">
+
+                <div class="planet purple"></div>
+
+                <h3>Cosmic Dream</h3>
+
+                <p>
+                    Di antara gelapnya ruang, cahaya tetap
+                    menemukan jalannya. Sebuah perjalanan
+                    tentang harapan dan keyakinan.
+                </p>
+
+            </article>
+
+            <article class="planet-card">
+
+                <div class="planet ice"></div>
+
+                <h3>Silent Moon</h3>
+
+                <p>
+                    Keheningan langit bukan berarti kosong.
+                    Ada begitu banyak tanda yang menunggu
+                    untuk direnungkan.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section id="gallery">
+
+    <div class="container">
+
+        <div class="section-label">
+            Chapter II
+        </div>
+
+        <h2 class="section-title">
+            Karya
+        </h2>
+
+        <p class="section-desc">
+            Enam ruang kecil untuk melihat semesta dari
+            sudut pandang yang berbeda.
+        </p>
+
+        <div class="gallery-grid">
+
+            <article class="gallery-card">
+                <div class="gallery-overlay">
+                    <h3>Beyond the Horizon</h3>
+                    <p>Langit • Perjalanan</p>
+                </div>
+            </article>
+
+            <article class="gallery-card">
+                <div class="gallery-overlay">
+                    <h3>Starlight</h3>
+                    <p>Cahaya • Harapan</p>
+                </div>
+            </article>
+
+            <article class="gallery-card">
+                <div class="gallery-overlay">
+                    <h3>Infinite Space</h3>
+                    <p>Semesta • Keheningan</p>
+                </div>
+            </article>
+
+            <article class="gallery-card">
+                <div class="gallery-overlay">
+                    <h3>Blue Planet</h3>
+                    <p>Bumi • Kehidupan</p>
+                </div>
+            </article>
+
+            <article class="gallery-card">
+                <div class="gallery-overlay">
+                    <h3>Into the Dark</h3>
+                    <p>Gelap • Renungan</p>
+                </div>
+            </article>
+
+            <article class="gallery-card">
+                <div class="gallery-overlay">
+                    <h3>Celestial</h3>
+                    <p>Langit • Keajaiban</p>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     EVENT
+========================= -->
+
+<section id="event">
+
+    <div class="container">
+
+        <div class="section-label">
+            Chapter III
+        </div>
+
+        <h2 class="section-title">
+            Tentang Acara
+        </h2>
+
+        <p class="section-desc">
+            Datang dan rasakan perjalanan visual yang
+            menggabungkan seni, langit, dan perenungan
+            tentang kebesaran Sang Pencipta.
+        </p>
+
+        <div class="event-box">
+
+            <div class="event-grid">
+
+                <div class="event-item">
+                    <span>Tanggal</span>
+                    <strong>25.10.2026</strong>
+                </div>
+
+                <div class="event-item">
+                    <span>Waktu</span>
+                    <strong>08.00 — 12.00</strong>
+                </div>
+
+                <div class="event-item">
+                    <span>Tempat</span>
+                    <strong>Aula Mubarok</strong>
+                </div>
+
+            </div>
+
+            <br><br>
+
+            <p class="section-desc">
+                Pintu pameran terbuka untuk para pengunjung
+                yang ingin menyaksikan karya dan mengikuti
+                perjalanan kecil menuju hamparan semesta.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     RSVP
+========================= -->
+
+<section id="rsvp" class="rsvp-section">
+
+    <div class="container">
+
+        <div class="section-label">
+            Chapter IV
+        </div>
+
+        <h2 class="section-title">
+            Will You Come?
+        </h2>
+
+        <p class="section-desc">
+            Konfirmasikan kehadiranmu agar kami dapat
+            mempersiapkan ruang terbaik untuk perjalanan ini.
+        </p>
+
+        <div class="rsvp-card">
+
+            <form id="rsvpForm">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Nama
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Masukkan nama"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="attendance">
+                            Kehadiran
+                        </label>
+
+                        <select
+                            id="attendance"
+                            name="attendance"
+                            required
+                        >
+                            <option value="">
+                                Pilih konfirmasi
+                            </option>
+
+                            <option value="Hadir">
+                                Hadir
+                            </option>
+
+                            <option value="Tidak hadir">
+                                Tidak hadir
+                            </option>
+
+                            <option value="Masih belum pasti">
+                                Masih belum pasti
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="guests">
+                            Jumlah Tamu
+                        </label>
+
+                        <input
+                            type="number"
+                            id="guests"
+                            name="guests"
+                            min="1"
+                            max="20"
+                            value="1"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="contact">
+                        Kontak (opsional)
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contact"
+                        name="contact"
+                        placeholder="Nomor kontak"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Pesan (opsional)
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Tulis pesan..."
+                    ></textarea>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn"
+                    id="submitButton"
+                >
+                    KIRIM KONFIRMASI
+                </button>
+
+                <div
+                    id="rsvpStatus"
+                    class="rsvp-status"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section class="final-section">
+
+    <div class="final-content">
+
+        <div class="section-label">
+            The End?
+        </div>
+
+        <h2 class="final-title">
+            See you<br>
+            <span>among the stars.</span>
+        </h2>
+
+        <p>
+            Perjalanan mungkin berakhir di halaman terakhir,
+            tetapi rasa kagum terhadap semesta selalu memiliki
+            ruang untuk terus tumbuh.
+        </p>
+
+        <button
+            class="btn"
+            id="starButton"
+        >
+            MAKE A WISH ✦
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    MENGARUNGI SAMUDRA LANGIT
+    •
+    ART EXHIBITION 2026
+
+</footer>
+
+<script>
+
+/* =====================================================
+   MUSIC PLAYER
+===================================================== */
+
+const music = document.getElementById("bgMusic");
+const button = document.getElementById("musicButton");
+
+let musicPlaying = false;
+
+button.addEventListener("click", function () {
+
+    if (music.paused) {
+
+        music.play()
+            .then(function () {
+
+                musicPlaying = true;
+
+                button.textContent = "Ⅱ";
+
+                button.setAttribute(
+                    "aria-label",
+                    "Pause music"
+                );
+
+            })
+            .catch(function (error) {
+
+                console.error(
+                    "Audio gagal diputar:",
+                    error
+                );
+
+                alert(
+                    "Musik gagal diputar. Pastikan file up-and-up.mp3 sudah ada di repository."
+                );
+
+            });
+
+    } else {
+
+        music.pause();
+
+        musicPlaying = false;
+
+        button.textContent = "♫";
+
+        button.setAttribute(
+            "aria-label",
+            "Play music"
+        );
+
+    }
+
+});
+
+
+music.addEventListener("ended", function () {
+
+    musicPlaying = false;
+
+    button.textContent = "♫";
+
+});
+
+
+/* =====================================================
+   RSVP GOOGLE SHEETS
+===================================================== */
+
+/*
+   GANTI URL DI BAWAH INI DENGAN URL
+   GOOGLE APPS SCRIPT WEB APP LO.
+
+   Contoh:
+   https://script.google.com/macros/s/XXXXXXXXXXXX/exec
+*/
+
+const GOOGLE_SCRIPT_URL =
+    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+
+const rsvpForm =
+    document.getElementById("rsvpForm");
+
+const submitButton =
+    document.getElementById("submitButton");
+
+const rsvpStatus =
+    document.getElementById("rsvpStatus");
+
+
+rsvpForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+        if (
+            !GOOGLE_SCRIPT_URL ||
+            GOOGLE_SCRIPT_URL.includes(
+                "PASTE_YOUR"
+            )
+        ) {
+
+            rsvpStatus.textContent =
+                "RSVP belum terhubung ke Google Sheets.";
+
+            rsvpStatus.className =
+                "rsvp-status error";
+
+            return;
+
+        }
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "MENGIRIM...";
+
+
+        rsvpStatus.textContent =
+            "";
+
+
+        const formData =
+            new FormData(rsvpForm);
+
+
+        const data =
+            new URLSearchParams();
+
+
+        data.append(
+            "name",
+            formData.get("name") || ""
+        );
+
+        data.append(
+            "attendance",
+            formData.get("attendance") || ""
+        );
+
+        data.append(
+            "guests",
+            formData.get("guests") || ""
+        );
+
+        data.append(
+            "contact",
+            formData.get("contact") || ""
+        );
+
+        data.append(
+            "message",
+            formData.get("message") || ""
+        );
+
+
+        try {
+
+            await fetch(
+                GOOGLE_SCRIPT_URL,
+                {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: data
+                }
+            );
+
+
+            rsvpStatus.textContent =
+                "Konfirmasi berhasil dikirim. Sampai jumpa di antara bintang ✦";
+
+            rsvpStatus.className =
+                "rsvp-status success";
+
+
+            rsvpForm.reset();
+
+
+            document.getElementById(
+                "guests"
+            ).value = "1";
+
+
+        } catch (error) {
+
+            console.error(
+                "RSVP error:",
+                error
+            );
+
+
+            rsvpStatus.textContent =
+                "Konfirmasi gagal dikirim. Silakan coba lagi.";
+
+            rsvpStatus.className =
+                "rsvp-status error";
+
+        }
+
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+            "KIRIM KONFIRMASI";
+
+    }
+);
+
+
+/* =====================================================
+   STAR BURST
+===================================================== */
+
+const starButton =
+    document.getElementById("starButton");
+
+
+starButton.addEventListener(
+    "click",
+    function () {
+
+        const rect =
+            starButton.getBoundingClientRect();
+
+
+        const centerX =
+            rect.left + rect.width / 2;
+
+
+        const centerY =
+            rect.top + rect.height / 2;
+
+
+        for (
+            let i = 0;
+            i < 35;
+            i++
+        ) {
+
+            const star =
+                document.createElement("div");
+
+
+            star.className =
+                "star-burst";
+
+
+            star.style.left =
+                centerX + "px";
+
+
+            star.style.top =
+                centerY + "px";
+
+
+            const angle =
+                Math.random() *
+                Math.PI *
+                2;
+
+
+            const distance =
+                70 +
+                Math.random() *
+                220;
+
+
+            star.style.setProperty(
+                "--x",
+                Math.cos(angle) *
+                distance +
+                "px"
+            );
+
+
+            star.style.setProperty(
+                "--y",
+                Math.sin(angle) *
+                distance +
+                "px"
+            );
+
+
+            document.body.appendChild(star);
+
+
+            setTimeout(
+                function () {
+                    star.remove();
+                },
+                1100
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NAVIGATION ACTIVE EFFECT
+===================================================== */
+
+const navLinks =
+    document.querySelectorAll(
+        ".top-nav a"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        const current =
+            window.scrollY + 200;
+
+
+        document
+            .querySelectorAll("section[id]")
+            .forEach(function (section) {
+
+                const top =
+                    section.offsetTop;
+
+                const height =
+                    section.offsetHeight;
+
+                const id =
+                    section.getAttribute("id");
+
+
+                if (
+                    current >= top &&
+                    current < top + height
+                ) {
+
+                    navLinks.forEach(
+                        function (link) {
+
+                            link.style.background =
+                                link.getAttribute(
+                                    "href"
+                                ) === "#" + id
+                                    ? "rgba(80,150,255,.15)"
+                                    : "";
+
+                            link.style.color =
+                                link.getAttribute(
+                                    "href"
+                                ) === "#" + id
+                                    ? "#ffffff"
+                                    : "";
+
+                        }
+                    );
+
+                }
+
+            });
+
+    }
+);
+
+</script>
+
+</body>
+</html>
